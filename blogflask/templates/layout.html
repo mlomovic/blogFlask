@@ -40,12 +40,13 @@
                         <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
                         <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
                         {% endif %}
+                        <a class="nav-item nav-link" href="{{ url_for('account') }}">{{ current_user.username }}</a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-
+    
 
     <main role="main" class="container">
         <div class="row">
