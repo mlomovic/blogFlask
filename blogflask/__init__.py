@@ -6,8 +6,6 @@ from flask_mail import Mail
 from blogflask.config import Config
 
 
-
-
 db = SQLAlchemy()
 
 bcrypt = Bcrypt()
@@ -16,14 +14,8 @@ login_manager = LoginManager()
 login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
 
-
 mail = Mail()
 
-
-# registrovanje blueprintova
-from blogflask.users.routes import users
-from blogflask.posts.routes import posts
-from blogflask.main.routes import main
 
 
 
@@ -37,8 +29,15 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     mail.init_app(app)
 
+    # registrovanje blueprintova
+    from blogflask.users.routes import users
+    from blogflask.posts.routes import posts
+    from blogflask.main.routes import main
+    from blogflask.errors.handlers import errors
+
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(main)
+    app.register_blueprint(errors)
 
     return app
